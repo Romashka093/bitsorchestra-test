@@ -1,6 +1,6 @@
 export const reviews = [
   {
-    id: 1,
+    id: '1',
     userName: 'Aadhya Colley',
     date: '2021-9-12',
     comment:
@@ -11,7 +11,7 @@ export const reviews = [
     isSavedUsername: false,
   },
   {
-    id: 2,
+    id: '2',
     userName: 'Jizya Aadhya',
     date: '2018-8-3',
     comment:

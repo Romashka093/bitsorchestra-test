@@ -1,5 +1,5 @@
 export interface ReviewItem {
-  id: number;
+  id: string;
   userName: string;
   date: string;
   comment: string;

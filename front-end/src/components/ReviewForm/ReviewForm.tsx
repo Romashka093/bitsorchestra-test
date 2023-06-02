@@ -1,9 +1,12 @@
-import { useState, ChangeEvent } from 'react';
+import { useState } from 'react';
 import { reviewsApi } from 'api/api';
 import { Rating } from 'react-simple-star-rating';
 import { Form, Row, Col, Button } from 'react-bootstrap';
 import { currentDate } from '../../helpers/formatting';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
 import shortid from 'shortid';
+import { ReviewItem } from '@helpers/index';
 
 const ReviewForm: React.FC = () => {
   const [userName, setUserName] = useState<string>('');
@@ -13,28 +16,6 @@ const ReviewForm: React.FC = () => {
   const [phone, setPhone] = useState<string>('');
   const [isSavedUsername, setIsSavedUsername] = useState<boolean>(false);
 
-  const handleChange = (evt: ChangeEvent<HTMLInputElement>) => {
-    const { value, name } = evt.target as HTMLInputElement;
-    switch (name) {
-      case 'userName':
-        setUserName(value);
-        break;
-      case 'comment':
-        setComment(value);
-        break;
-      case 'email':
-        setEmail(value);
-        break;
-      case 'phone':
-        setPhone(value);
-        break;
-      case 'isSavedUsername':
-        setIsSavedUsername(!isSavedUsername);
-        break;
-      default:
-        break;
-    }
-  };
   const formReset = () => {
     setUserName('');
     setComment('');
@@ -43,10 +24,56 @@ const ReviewForm: React.FC = () => {
     setPhone('');
     setIsSavedUsername(false);
   };
-  const handleSubmit = async () => {
-    // event.preventDefault();
+
+  const handlerSubmit = (data: ReviewItem) => {
     try {
-      await reviewsApi.postReviews({
+      reviewsApi.postReviews(data);
+    } catch (error) {
+      console.log('post reviews error: ', error);
+    } finally {
+      formReset();
+    }
+  };
+
+  const formik = useFormik({
+    enableReinitialize: true,
+    initialValues: {
+      userName,
+      comment,
+      rating,
+      email,
+      phone,
+      isSavedUsername,
+    },
+
+    validationSchema: Yup.object({
+      userName: Yup.string()
+        .min(1, 'Name is too short')
+        .max(60, 'Name is too long')
+        .required('Name is required'),
+
+      comment: Yup.string()
+        .min(10, 'Comment is too short')
+        .max(600, 'Comment is too long')
+        .required('Comment is required'),
+
+      email: Yup.string()
+        .email('Please, enter a valid email')
+        .required('Email address is required')
+        .max(100, 'Email is too long'),
+
+      rating: Yup.number(),
+
+      phone: Yup.string(),
+
+      isSavedUsername: Yup.boolean(),
+    }),
+
+    onSubmit: (values, { setSubmitting, resetForm }) => {
+      const { userName, comment, rating, email, phone, isSavedUsername } =
+        values;
+
+      handlerSubmit({
         id: shortid.generate(),
         userName,
         date: currentDate,
@@ -56,12 +83,12 @@ const ReviewForm: React.FC = () => {
         phone,
         isSavedUsername,
       });
-    } catch (error) {
-      console.log('post reviews error: ', error);
-    } finally {
-      formReset();
-    }
-  };
+      resetForm();
+      setSubmitting(true);
+    },
+  });
+
+  const { handleSubmit, handleChange, handleBlur, errors, touched } = formik;
 
   const handleRating = (rate: number) => {
     setRating(rate);
@@ -87,7 +114,9 @@ const ReviewForm: React.FC = () => {
           name="comment"
           required
           onChange={handleChange}
+          onBlur={handleBlur}
         />
+        {errors.comment && touched.comment ? <>{errors.comment}</> : ''}
       </Form.Group>
       <Form.Group className="mb-4">
         <Row>
@@ -98,7 +127,9 @@ const ReviewForm: React.FC = () => {
               name="userName"
               required
               onChange={handleChange}
+              onBlur={handleBlur}
             />
+            {errors.userName && touched.userName ? <>{errors.userName}</> : ''}
           </Col>
           <Col>
             <Form.Control
@@ -107,7 +138,9 @@ const ReviewForm: React.FC = () => {
               placeholder="Email *"
               required
               onChange={handleChange}
+              onBlur={handleBlur}
             />
+            {errors.email && touched.email ? <>{errors.email}</> : ''}
           </Col>
         </Row>
       </Form.Group>
@@ -118,6 +151,7 @@ const ReviewForm: React.FC = () => {
         placeholder="Phone (optional)"
         name="phone"
         onChange={handleChange}
+        onBlur={handleBlur}
       />
 
       <Form.Check
@@ -126,7 +160,9 @@ const ReviewForm: React.FC = () => {
         type="checkbox"
         label="Save my name, and email in this browser for the next time I comment"
         name="isSavedUsername"
+        onBlur={handleBlur}
       />
+
       <Button type="submit">Post Review</Button>
     </Form>
   );
