@@ -12,3 +12,15 @@ export const productsApi = {
     return response;
   },
 };
+
+export const reviewsApi = {
+  async getReviews() {
+    const response = await api.get(`/reviews`);
+    return response;
+  },
+
+  async postReviews({ ...data }) {
+    const response = await api.post(`/reviews`, { ...data });
+    return response.data;
+  },
+};

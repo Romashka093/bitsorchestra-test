@@ -4,7 +4,7 @@ export interface ReviewItem {
   date: string;
   comment: string;
   rating: number;
-  email: string;
+  email?: string;
   phone?: string;
   isSavedUsername?: boolean;
 }

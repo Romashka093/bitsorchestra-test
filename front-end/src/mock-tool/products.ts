@@ -1,5 +1,3 @@
-// import { ProductList } from '@helpers/index';
-
 export const products = [
   {
     id: 1,

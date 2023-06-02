@@ -17,7 +17,7 @@ const Products: React.FC = () => {
   }, []);
 
   return (
-    <Container fluid="md" className="mt-4">
+    <Container className="mt-4">
       <p className="text-center text-uppercase">
         the innovation leader in luxury vinyl plank
       </p>
