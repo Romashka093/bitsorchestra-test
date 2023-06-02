@@ -1,15 +1,14 @@
+import { Header, Footer } from '../components/index';
 import { Outlet } from 'react-router-dom';
 
 const DefaultLayout: React.FC = () => {
   return (
     <>
-      {/* <header>
-        <nav></nav>
-      </header> */}
+      <Header />
       <main>
         <Outlet />
       </main>
-      {/* <footer></footer> */}
+      <Footer />
     </>
   );
 };
