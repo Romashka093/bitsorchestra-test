@@ -1,16 +1,5 @@
 {
-  "reviews": [
-    {
-      "id": 1,
-      "userName": "Naty Portman",
-      "date": "March 16, 2023",
-      "comment": "Sed lectus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim.",
-      "rating": 4,
-      "email": "test@gmail.com",
-      "phone": "89898293234",
-      "isSavedUsername": false
-    }
-  ],
+  "reviews": [],
   "products": [
     {
       "id": 1,

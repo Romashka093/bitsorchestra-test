@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/static/css/main.94bb3d03.css",
+    "main.js": "/static/js/main.73d8fd86.js",
+    "LazyProductsPage.js": "/static/js/LazyProductsPage.e9ff5ef1.chunk.js",
+    "LazyReviewsPage.js": "/static/js/LazyReviewsPage.5a1627f8.chunk.js",
+    "LazyReviewItemPage.js": "/static/js/LazyReviewItemPage.1128a26b.chunk.js",
+    "LazyProductItemPage.js": "/static/js/LazyProductItemPage.8277f3f2.chunk.js",
+    "static/js/787.22edae46.chunk.js": "/static/js/787.22edae46.chunk.js",
+    "index.html": "/index.html",
+    "main.94bb3d03.css.map": "/static/css/main.94bb3d03.css.map",
+    "main.73d8fd86.js.map": "/static/js/main.73d8fd86.js.map",
+    "LazyProductsPage.e9ff5ef1.chunk.js.map": "/static/js/LazyProductsPage.e9ff5ef1.chunk.js.map",
+    "LazyReviewsPage.5a1627f8.chunk.js.map": "/static/js/LazyReviewsPage.5a1627f8.chunk.js.map",
+    "LazyReviewItemPage.1128a26b.chunk.js.map": "/static/js/LazyReviewItemPage.1128a26b.chunk.js.map",
+    "LazyProductItemPage.8277f3f2.chunk.js.map": "/static/js/LazyProductItemPage.8277f3f2.chunk.js.map",
+    "787.22edae46.chunk.js.map": "/static/js/787.22edae46.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.94bb3d03.css",
+    "static/js/main.73d8fd86.js"
+  ]
+}
