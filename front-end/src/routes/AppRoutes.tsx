@@ -26,6 +26,13 @@ const LazyReviewItemPage = lazy(
     ),
 );
 
+const LazyProductItemPage = lazy(
+  () =>
+    import(
+      '../pages/ProductItem/ProductItem' /* webpackChunkName: "LazyProductItemPage" */
+    ),
+);
+
 const AppRoutes: React.FC = () => {
   return (
     <Suspense fallback={null}>
@@ -33,6 +40,7 @@ const AppRoutes: React.FC = () => {
         <Route path={main} element={<DefaultLayout />}>
           <Route index element={<Navigate to={products} />} />
           <Route path={products} element={<LazyProductsPage />} />
+          <Route path={`${products}/:id`} element={<LazyProductItemPage />} />
           <Route path={reviews} element={<LazyReviewsPage />} />
           <Route path={`${reviews}/:id`} element={<LazyReviewItemPage />} />
           <Route path="*" element={<Navigate to={products} replace />} />

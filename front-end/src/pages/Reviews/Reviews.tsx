@@ -5,6 +5,8 @@ import { reviews } from 'mock-tool/reviews';
 import { Container, CardGroup, Row } from 'react-bootstrap';
 import { Review, ReviewForm } from '../../components/index';
 import { reviewsApi } from 'api/api';
+import { routes } from 'routes/routes';
+import { Link } from 'react-router-dom';
 
 const Reviews: React.FC = () => {
   const [defaultReviews, setDefaultReviews] = useState<ReviewList>([]);
@@ -35,14 +37,16 @@ const Reviews: React.FC = () => {
         <Row as={'ul'} className="my-0 mx-auto">
           {reviwsData?.length <= 2 ? (
             defaultReviews?.map(elem => (
-              <>
-                <Review key={elem.id} {...elem} />
-              </>
+              <Link key={elem.id} to={`${routes.reviews}/${elem.id}`}>
+                <Review {...elem} />
+              </Link>
             ))
           ) : togglerReadReviews === false ? (
             <>
               {defaultReviews?.map(elem => (
-                <Review key={elem.id} {...elem} />
+                <Link key={elem.id} to={`${routes.reviews}/${elem.id}`}>
+                  <Review {...elem} />
+                </Link>
               ))}
               <Row
                 as={'p'}
@@ -56,7 +60,9 @@ const Reviews: React.FC = () => {
           ) : (
             <>
               {reviwsData?.map(elem => (
-                <Review key={elem.id} {...elem} />
+                <Link key={elem.id} to={`${routes.reviews}/${elem.id}`}>
+                  <Review {...elem} />
+                </Link>
               ))}
               <Row
                 as={'p'}

@@ -2,6 +2,7 @@ import { ProductItem } from '@helpers/index';
 import { Card } from 'react-bootstrap';
 
 const ProductCard: React.FC<ProductItem> = ({ name, cost, details, image }) => {
+  const shortDetails = details.length > 30 ? details.slice(0, 30) : details;
   return (
     <Card style={{ width: '100%' }}>
       <Card.Img
@@ -14,7 +15,10 @@ const ProductCard: React.FC<ProductItem> = ({ name, cost, details, image }) => {
       <Card.Body>
         <Card.Title>{name}</Card.Title>
         <Card.Subtitle>Price: {cost}</Card.Subtitle>
-        <Card.Text>{details}</Card.Text>
+        <Card.Text>
+          {shortDetails}
+          {details.length > 30 ? <>...</> : null}
+        </Card.Text>
       </Card.Body>
     </Card>
   );

@@ -4,6 +4,8 @@ import { ProductList } from '@helpers/index';
 import { ProductCard } from '../../components/index';
 import { Container, Row, Col } from 'react-bootstrap';
 import { productsApi } from 'api/api';
+import { Link } from 'react-router-dom';
+import { routes } from 'routes/routes';
 
 const Products: React.FC = () => {
   const [productList, setProductList] = useState<ProductList>([]);
@@ -33,7 +35,9 @@ const Products: React.FC = () => {
             as={'li'}
             className="mb-4"
           >
-            <ProductCard {...product} />
+            <Link to={`${routes.products}/${product.id}`}>
+              <ProductCard {...product} />
+            </Link>
           </Col>
         ))}
       </Row>

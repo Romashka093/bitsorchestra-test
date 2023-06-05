@@ -17,6 +17,8 @@
     "react-router-dom": "^6.11.2",
     "react-scripts": "5.0.1",
     "react-simple-star-rating": "^5.1.7",
+    "resolve-url-loader": "^5.0.0",
+    "sass": "^1.62.1",
     "shortid": "^2.2.16",
     "typescript": "^5.0.4",
     "web-vitals": "^2.1.4",

@@ -2,19 +2,8 @@ import { formattingDate } from '../../helpers/formatting';
 import { ReviewItem } from '@helpers/index';
 import { Card } from 'react-bootstrap';
 import { Rating } from 'react-simple-star-rating';
-import { Link } from 'react-router-dom';
-import { routes } from 'routes/routes';
 
-const Review: React.FC<ReviewItem> = ({
-  id,
-  userName,
-  date,
-  comment,
-  rating,
-  // email,
-  // phone,
-  // isSavedUsername,
-}) => {
+const Review: React.FC<ReviewItem> = ({ userName, date, comment, rating }) => {
   return (
     <Card style={{ width: '100%' }} as="li" className="mb-4 ">
       <Card.Body>
@@ -31,11 +20,10 @@ const Review: React.FC<ReviewItem> = ({
           size={15}
         />
         <Card.Text>{comment}</Card.Text>
-        <Link to={`${routes.reviews}/${id}`}>
-          <Card.Subtitle className="text-uppercase small">
-            Read more ...
-          </Card.Subtitle>
-        </Link>
+
+        <Card.Subtitle className="text-uppercase small">
+          Read more ...
+        </Card.Subtitle>
       </Card.Body>
     </Card>
   );

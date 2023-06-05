@@ -52,9 +52,9 @@ a {
 
 button {
   transition: 223ms;
-}
-button:hover {
-  transition: 223ms;
+  &:hover {
+    transition: 223ms;
+  }
 }
 
 #root {
